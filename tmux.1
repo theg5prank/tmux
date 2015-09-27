@@ -2660,6 +2660,15 @@ captures the mouse and allows mouse events to be bound as key bindings.
 See the
 .Sx MOUSE SUPPORT
 section for details.
+.It Xo Ic mouse-selection-quit-copy
+.Op Ic on | off
+.Xc
+If on, when making a selection by dragging the mouse,
+.Nm
+will exit copy mode when the mouse is released and the selection is made. If
+off,
+.Nm
+will remain in copy mode after a selection is made by dragging the mouse.
 .It Xo Ic mouse-utf8
 .Op Ic on | off
 .Xc

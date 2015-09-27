@@ -2288,5 +2288,10 @@ window_copy_drag_release(unused struct client *c, struct mouse_event *m)
 		return;
 
 	window_copy_copy_selection(wp, NULL);
-	window_pane_reset_mode(wp);
+	if (options_get_number(&c->session->options, "mouse-selection-quit-copy"))
+		window_pane_reset_mode(wp);
+	else {
+		window_copy_clear_selection(wp);
+        	window_copy_redraw_screen(wp);
+	}
 }

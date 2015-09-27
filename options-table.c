@@ -256,6 +256,11 @@ const struct options_table_entry session_options_table[] = {
 	  .default_num = 0
 	},
 
+        { .name = "mouse-selection-quit-copy",
+          .type = OPTIONS_TABLE_FLAG,
+          .default_num = 1
+        },
+
 	{ .name = "mouse-utf8",
 	  .type = OPTIONS_TABLE_FLAG,
 	  .default_num = 0
