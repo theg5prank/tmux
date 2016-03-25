@@ -2281,14 +2281,18 @@ window_copy_drag_update(unused struct client *c, struct mouse_event *m)
 void
 window_copy_drag_release(unused struct client *c, struct mouse_event *m)
 {
-	struct window_pane	*wp;
+	struct window_pane		*wp;
+	struct window_copy_mode_data	*data;
 
 	wp = cmd_mouse_pane(m, NULL, NULL);
 	if (wp == NULL || wp->mode != &window_copy_mode)
 		return;
 
+	data = wp->modedata;
+
 	window_copy_copy_selection(wp, NULL);
-	if (options_get_number(&c->session->options, "mouse-selection-quit-copy"))
+	if (options_get_number(&c->session->options, "mouse-selection-quit-copy") ||
+	    data->oy == 0)
 		window_pane_reset_mode(wp);
 	else {
 		window_copy_clear_selection(wp);
