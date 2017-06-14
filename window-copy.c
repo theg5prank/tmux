@@ -604,6 +604,13 @@ window_copy_command(struct window_pane *wp, struct client *c, struct session *s,
 			redraw = 1;
 			cancel = 1;
 		}
+		if (strcmp(command, "copy-selection-and-cancel-if-scrolled-to-bottom") == 0) {
+			if (s != NULL)
+				window_copy_copy_selection(wp, NULL);
+			window_copy_clear_selection(wp);
+			redraw = 1;
+			cancel = (data->oy == 0);
+		}
 		if (strcmp(command, "cursor-down") == 0) {
 			for (; np != 0; np--)
 				window_copy_cursor_down(wp, 0);
